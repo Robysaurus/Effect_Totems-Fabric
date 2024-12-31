@@ -1,0 +1,40 @@
+{
+	"schemaVersion": 1,
+	"id": "effecttotems",
+	"version": "${version}",
+	"name": "Effect Totems",
+	"description": "This mod adds craftable totems that give you a permanent effect while in your inventory!",
+	"authors": [
+		"Me!"
+	],
+	"contact": {
+		"homepage": "https://modrinth.com/mod/effect-totems",
+		"sources": "https://github.com/Robysaurus/"
+	},
+	"license": "MIT",
+	"icon": "assets/effecttotems/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"dog.robysaurus.effecttotems.EffectTotems"
+		],
+		"fabric-datagen": [
+			"dog.robysaurus.effecttotems.EffectTotemsDataGenerator"
+		],
+		"client": [
+			"dog.robysaurus.effecttotems.EffectTotemsClient"
+		]
+	},
+	"mixins": [
+		"effecttotems.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.16.9",
+		"minecraft": "~1.21.4",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
