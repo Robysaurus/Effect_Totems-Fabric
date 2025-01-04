@@ -10,7 +10,6 @@ import net.minecraft.item.ItemGroups;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.Potions;
 import net.minecraft.registry.*;
-import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.resource.featuretoggle.FeatureSet;
 import net.minecraft.util.Identifier;
 
@@ -54,11 +53,6 @@ public class ModItems {
                         !potionEntry.matches(Potions.LONG_WEAKNESS) &&
                         !potionEntry.matches(Potions.LONG_SLOW_FALLING))
                 .map(entry -> PotionContentsComponent.createStack(ModItems.TOTEM, entry))
-                .forEach(stack -> {
-                    PotionContentsComponent potionContents = stack.get(DataComponentTypes.POTION_CONTENTS);
-                    potionContents.forEachEffect(effect -> effect.mapDuration(duration -> 1));
-                    stack.set(DataComponentTypes.POTION_CONTENTS, potionContents);
-                    entries.add(stack, ItemGroup.StackVisibility.PARENT_AND_SEARCH_TABS);
-                });
+                .forEach(stack -> entries.add(stack, ItemGroup.StackVisibility.PARENT_AND_SEARCH_TABS));
     }
 }

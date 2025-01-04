@@ -12,7 +12,6 @@ import net.minecraft.recipe.SpecialCraftingRecipe;
 import net.minecraft.recipe.book.CraftingRecipeCategory;
 import net.minecraft.recipe.input.CraftingRecipeInput;
 import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.world.World;
@@ -68,9 +67,7 @@ public class EffectTotemRecipe extends SpecialCraftingRecipe {
                 !potionEntry.matches(Potions.LONG_WEAKNESS) &&
                 !potionEntry.matches(Potions.LONG_SLOW_FALLING)) {
             ItemStack result = new ItemStack(ModItems.TOTEM, 1);
-            PotionContentsComponent potionContents = stack.get(DataComponentTypes.POTION_CONTENTS);
-            potionContents.forEachEffect(effect -> effect.mapDuration(duration -> 1));
-            result.set(DataComponentTypes.POTION_CONTENTS, potionContents);
+            result.set(DataComponentTypes.POTION_CONTENTS, stack.get(DataComponentTypes.POTION_CONTENTS));
             return result;
         }else {
             return ItemStack.EMPTY;
