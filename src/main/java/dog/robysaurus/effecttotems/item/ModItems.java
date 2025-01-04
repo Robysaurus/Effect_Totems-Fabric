@@ -16,11 +16,11 @@ import net.minecraft.util.Identifier;
 import java.util.function.Function;
 
 public class ModItems {
-    public static final Item TOTEM = register("totem", EffectTotemItem::new, new Item.Settings().maxCount(1).component(DataComponentTypes.POTION_CONTENTS, PotionContentsComponent.DEFAULT));
+    public static final Item TOTEM = register(EffectTotemItem::new, new Item.Settings().maxCount(1).component(DataComponentTypes.POTION_CONTENTS, PotionContentsComponent.DEFAULT));
     
-    private static Item register(String id, Function<Item.Settings, Item> factory, Item.Settings settings) {
-        RegistryKey<Item> key = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(EffectTotems.MOD_ID, id));
-        Item item = (Item)factory.apply(settings.registryKey(key));
+    private static Item register(Function<Item.Settings, Item> factory, Item.Settings settings) {
+        RegistryKey<Item> key = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(EffectTotems.MOD_ID, "totem"));
+        Item item = factory.apply(settings.registryKey(key));
         return Registry.register(Registries.ITEM, key, item);
     }
     
@@ -36,7 +36,7 @@ public class ModItems {
 
     private static void addPotions(ItemGroup.Entries entries, RegistryWrapper<Potion> registryWrapper, FeatureSet enabledFeatures) {
         registryWrapper.streamEntries()
-                .filter(potionEntry -> ((Potion)potionEntry.value()).isEnabled(enabledFeatures))
+                .filter(potionEntry -> potionEntry.value().isEnabled(enabledFeatures))
                 .filter(potionEntry -> !potionEntry.value().hasInstantEffect())
                 .filter(potionEntry -> 
                         !potionEntry.matches(Potions.LONG_NIGHT_VISION) &&

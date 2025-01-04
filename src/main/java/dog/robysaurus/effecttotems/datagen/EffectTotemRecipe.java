@@ -2,7 +2,6 @@ package dog.robysaurus.effecttotems.datagen;
 
 import dog.robysaurus.effecttotems.item.ModItems;
 import net.minecraft.component.DataComponentTypes;
-import net.minecraft.component.type.PotionContentsComponent;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.potion.Potion;

@@ -11,7 +11,6 @@ import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffectUtil;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.tooltip.TooltipType;
@@ -63,12 +62,12 @@ public class EffectTotemItem extends Item {
     public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
         PotionContentsComponent potionContentsComponent = stack.get(DataComponentTypes.POTION_CONTENTS);
         if (potionContentsComponent != null) {
-            buildTooltip(potionContentsComponent.getEffects(), tooltip::add, 0F, context.getUpdateTickRate());
+            buildTooltip(potionContentsComponent.getEffects(), tooltip::add);
         }
     }
 
-    public static void buildTooltip(Iterable<StatusEffectInstance> effects, Consumer<Text> textConsumer, float durationMultiplier, float tickRate) {
-        List<Pair<RegistryEntry<EntityAttribute>, EntityAttributeModifier>> list = Lists.<Pair<RegistryEntry<EntityAttribute>, EntityAttributeModifier>>newArrayList();
+    public static void buildTooltip(Iterable<StatusEffectInstance> effects, Consumer<Text> textConsumer) {
+        List<Pair<RegistryEntry<EntityAttribute>, EntityAttributeModifier>> list = Lists.newArrayList();
         boolean bl = true;
 
         for (StatusEffectInstance statusEffectInstance : effects) {
